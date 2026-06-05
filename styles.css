@@ -146,6 +146,15 @@ a {
   color: var(--accent-dark);
 }
 
+.nav__auth {
+  color: var(--accent-dark) !important;
+  font-weight: 700;
+}
+
+#authIconBtn {
+  display: none;
+}
+
 .burger {
   display: none;
   flex-direction: column;
@@ -769,8 +778,18 @@ a {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .header__actions .btn {
+  #authIconBtn {
+    display: inline-flex;
+  }
+
+  .header__actions .btn--sm {
     display: none;
+  }
+
+  .nav__auth {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
   }
 
   .about__grid,

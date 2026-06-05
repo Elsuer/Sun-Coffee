@@ -23,6 +23,8 @@ const UI = {
       cartBtn: document.getElementById("cartBtn"),
       cartBadge: document.getElementById("cartBadge"),
       authBtn: document.getElementById("authBtn"),
+      authIconBtn: document.getElementById("authIconBtn"),
+      navAuthLink: document.getElementById("navAuthLink"),
       menuGrid: document.getElementById("menuGrid"),
       menuFilters: document.getElementById("menuFilters"),
       cartDrawer: document.getElementById("cartDrawer"),
@@ -65,9 +67,19 @@ const UI = {
     window.addEventListener("scroll", toggleHeaderState, { passive: true });
 
     this.els.cartBtn.addEventListener("click", () => this.openCart());
-    this.els.authBtn.addEventListener("click", () => {
+    const openAuthOrAccount = () => {
       const user = Auth.getCurrentUser();
       user ? this.openAccount() : this.openAuth("login");
+    };
+
+    this.els.authBtn.addEventListener("click", openAuthOrAccount);
+    this.els.authIconBtn?.addEventListener("click", openAuthOrAccount);
+    this.els.navAuthLink?.addEventListener("click", (e) => {
+      e.preventDefault();
+      burger.classList.remove("active");
+      nav.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      openAuthOrAccount();
     });
   },
 
@@ -144,8 +156,12 @@ const UI = {
 
   updateAuthUI() {
     const user = Auth.getCurrentUser();
-    this.els.authBtn.textContent = user ? user.name.split(" ")[0] : "Войти";
+    const label = user ? user.name.split(" ")[0] : "Войти";
+    this.els.authBtn.textContent = label;
     this.els.authBtn.classList.toggle("btn--logged", !!user);
+    if (this.els.navAuthLink) {
+      this.els.navAuthLink.textContent = user ? `Кабинет · ${label}` : "Войти / Регистрация";
+    }
   },
 
   handleLogin() {
