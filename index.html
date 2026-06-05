@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sun Coffee — кофейня в Косшы. Онлайн-заказ, бонусы, интеграция с Paloma. Кофе с собой, чай, коктейли.">
+  <title>Sun Coffee — кофейня в Косшы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <span class="logo__sun" aria-hidden="true">☀</span>
+        <span class="logo__text">Sun Coffee</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#order">Заказ</a>
+        <a href="#locations">Филиалы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="header__actions">
+        <button type="button" class="icon-btn" id="cartBtn" aria-label="Корзина">
+          🛒
+          <span class="badge" id="cartBadge" hidden>0</span>
+        </button>
+        <button type="button" class="btn btn--sm" id="authBtn">Войти</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container hero__content">
+        <div class="hero__badge">Номинант 2ГИС Awards 2026</div>
+        <h1 class="hero__title">Sun Coffee</h1>
+        <p class="hero__subtitle">Закажите онлайн, копите бонусы и забирайте в удобном филиале — программа лояльности связана с Paloma на кассе</p>
+        <div class="hero__stats">
+          <div class="stat">
+            <span class="stat__value">4.9</span>
+            <span class="stat__label">рейтинг</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">5%</span>
+            <span class="stat__label">кэшбэк</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">2</span>
+            <span class="stat__label">филиала</span>
+          </div>
+        </div>
+        <div class="hero__actions">
+          <a href="#menu" class="btn">Смотреть меню</a>
+          <button type="button" class="btn btn--outline" onclick="document.getElementById('cartBtn').click()">Корзина</button>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Листайте</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__visual">
+          <div class="about__card about__card--main">
+            <div class="about__card-icon">☕</div>
+            <p>Кофе с собой · Чай · Коктейли</p>
+          </div>
+          <div class="about__card about__card--accent">
+            <span>Бонусы</span>
+            <small>Paloma + сайт</small>
+          </div>
+        </div>
+        <div class="about__text">
+          <span class="section__tag">О кофейне</span>
+          <h2 class="section__title">Тёплый свет, хороший кофе и накопительная программа</h2>
+          <p>Sun Coffee — кофейня в Косшы с рейтингом 4.9. Регистрируйтесь на сайте, копите бонусы и привяжите аккаунт к программе лояльности Paloma — той же, что на мониторе кассы в кофейне.</p>
+          <p>Соберите заказ в корзине, укажите комментарии и отправьте в WhatsApp — мы подтвердим и приготовим.</p>
+          <ul class="about__features">
+            <li>Онлайн-корзина и заказ в WhatsApp</li>
+            <li>Личный кабинет с бонусами</li>
+            <li>Привязка к Paloma по телефону</li>
+            <li>Оплата на кассе или удалённо</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section menu" id="menu">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__tag">Меню</span>
+          <h2 class="section__title">Выберите напитки</h2>
+          <p class="section__desc">Классическое кофе, летнее меню, милкшейки, лимонады, чаи и добавки — цены как в кофейне.</p>
+        </div>
+        <div class="menu-filters" id="menuFilters"></div>
+        <div class="menu__grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <section class="section order" id="order">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__tag">Онлайн-заказ</span>
+          <h2 class="section__title">Оформление заказа</h2>
+          <p class="section__desc">Заполните данные — заказ уйдёт в WhatsApp с полным составом, комментариями и способом оплаты.</p>
+        </div>
+        <div class="order__grid">
+          <form class="checkout-form" id="checkoutForm">
+            <div class="form-grid">
+              <label>
+                <span>Имя *</span>
+                <input type="text" name="name" required placeholder="Ваше имя">
+              </label>
+              <label>
+                <span>Телефон *</span>
+                <input type="tel" name="phone" required placeholder="+7 (707) 777-32-78">
+              </label>
+              <label class="full">
+                <span>Адрес / ориентир</span>
+                <input type="text" name="address" placeholder="Для доставки или самовывоза">
+              </label>
+              <label>
+                <span>Филиал *</span>
+                <select name="branch" required></select>
+              </label>
+              <label>
+                <span>Получение *</span>
+                <select name="deliveryType" required>
+                  <option value="pickup">Самовывоз</option>
+                  <option value="delivery">Доставка</option>
+                </select>
+              </label>
+              <label class="full">
+                <span>Способ оплаты *</span>
+                <select name="payment" required></select>
+              </label>
+              <div class="full remote-pay" id="remotePayBlock" hidden>
+                <label>
+                  <span>Номер для удалённой оплаты (Kaspi / банк)</span>
+                  <input type="text" name="remotePayPhone" value="+7 (707) 777-32-78">
+                </label>
+                <p class="form-hint">После отправки заказа переведите сумму на этот номер и приложите чек в WhatsApp.</p>
+              </div>
+              <label class="full checkbox-label">
+                <input type="checkbox" name="useBonuses">
+                <span>Списать бонусы (до 30% заказа, нужен вход в аккаунт)</span>
+              </label>
+              <label class="full">
+                <span>Комментарий к заказу</span>
+                <textarea name="orderComment" rows="3" placeholder="Время готовности, пожелания, аллергии..."></textarea>
+              </label>
+            </div>
+            <button type="submit" class="btn btn--full">Отправить заказ в WhatsApp</button>
+          </form>
+          <aside class="order-aside">
+            <h3>Как это работает</h3>
+            <ol class="order-steps">
+              <li>Добавьте напитки в корзину из меню</li>
+              <li>Укажите имя, телефон, филиал и оплату</li>
+              <li>Заказ откроется в WhatsApp с деталями</li>
+              <li>Мы подтвердим и пробьём в Paloma на кассе</li>
+            </ol>
+            <div class="order-bonus-card">
+              <strong>+5% бонусов</strong>
+              <p>За каждый заказ. Войдите или зарегистрируйтесь и привяжите телефон к Paloma.</p>
+            </div>
+            <button type="button" class="btn btn--outline btn--full" onclick="document.getElementById('cartBtn').click()">Открыть корзину</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section locations" id="locations">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__tag">Филиалы</span>
+          <h2 class="section__title">Два адреса в Косшы</h2>
+        </div>
+        <div class="locations__grid">
+          <article class="location-card location-card--primary">
+            <div class="location-card__badge">Основной филиал</div>
+            <h3>ул. Толе би, 2е</h3>
+            <p>Косшы, Акмолинская область · 1 этаж</p>
+            <ul class="location-card__meta">
+              <li><span>Рейтинг</span><strong>4.9 · 189 отзывов</strong></li>
+              <li><span>Статус</span><strong class="status-open">Открыто</strong></li>
+            </ul>
+            <a href="https://2gis.kz/kosshy/search/sun%20coffee/firm/70000001101960583/71.360442%2C50.986417" target="_blank" rel="noopener" class="btn btn--outline">Открыть в 2ГИС</a>
+          </article>
+          <article class="location-card">
+            <div class="location-card__badge">Филиал 2</div>
+            <h3>ул. Лесная поляна, 17</h3>
+            <p>Косшы, Акмолинская область</p>
+            <ul class="location-card__meta">
+              <li><span>Рейтинг</span><strong>4.9 · 31 отзыв</strong></li>
+              <li><span>Формат</span><strong>Кофе с собой</strong></li>
+            </ul>
+            <a href="https://2gis.kz/kosshy/search/sun%20coffee" target="_blank" rel="noopener" class="btn btn--outline">Найти на карте</a>
+          </article>
+        </div>
+        <div class="map">
+          <iframe title="Sun Coffee на карте Косшы" src="https://www.openstreetmap.org/export/embed.html?bbox=71.350442%2C50.976417%2C71.370442%2C50.996417&amp;layer=mapnik&amp;marker=50.986417%2C71.360442" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__tag">Отзывы</span>
+          <h2 class="section__title">Гости возвращаются снова</h2>
+        </div>
+        <div class="reviews__grid">
+          <blockquote class="review-card">
+            <div class="review-card__stars">★★★★★</div>
+            <p>«Отличный кофе и быстрое обслуживание. Удобно забирать с собой по дороге.»</p>
+            <footer>Гость 2ГИС</footer>
+          </blockquote>
+          <blockquote class="review-card">
+            <div class="review-card__stars">★★★★★</div>
+            <p>«Уютная атмосфера, вкусные коктейли и соки. Рекомендую!»</p>
+            <footer>Гость 2ГИС</footer>
+          </blockquote>
+          <blockquote class="review-card review-card--highlight">
+            <div class="review-card__rating">4.9</div>
+            <p>Номинация 2ГИС Awards 2026 — стабильное качество и доверие гостей.</p>
+            <footer>Sun Coffee · 2ГИС</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__info">
+          <span class="section__tag">Контакты</span>
+          <h2 class="section__title">Свяжитесь с нами</h2>
+          <ul class="contact__list">
+            <li>
+              <span class="contact__label">Телефон</span>
+              <a href="tel:+77077773278">+7 (707) 777-32-78</a>
+            </li>
+            <li>
+              <span class="contact__label">Адрес</span>
+              <span>ул. Толе би, 2е, Косшы</span>
+            </li>
+            <li>
+              <span class="contact__label">Соцсети</span>
+              <div class="contact__socials">
+                <a href="https://www.instagram.com/suncoffee.kosshy" target="_blank" rel="noopener" class="social-link">Instagram</a>
+                <a href="https://wa.me/77077773278" target="_blank" rel="noopener" class="social-link social-link--wa">WhatsApp</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="contact__form" id="contactForm">
+          <h3>Напишите нам</h3>
+          <label><span>Имя</span><input type="text" name="name" required></label>
+          <label><span>Телефон</span><input type="tel" name="phone" required></label>
+          <label><span>Сообщение</span><textarea name="message" rows="4"></textarea></label>
+          <button type="submit" class="btn btn--full">Отправить в WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__sun">☀</span>
+        <div>
+          <strong>Sun Coffee</strong>
+          <p>Кофейня в Косшы · Paloma · Бонусы</p>
+        </div>
+      </div>
+      <p class="footer__copy">© 2026 Sun Coffee · <a href="https://www.instagram.com/suncoffee.kosshy" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </footer>
+
+  <!-- Корзина -->
+  <div class="overlay" id="cartOverlay"></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Корзина">
+    <div class="drawer__head">
+      <h2>Корзина</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Закрыть">✕</button>
+    </div>
+    <div class="drawer__body" id="cartItems"></div>
+    <div class="drawer__foot">
+      <div class="cart-summary">
+        <div><span>Итого</span><strong id="cartTotal">0 ₸</strong></div>
+        <p id="cartBonus">+0 бонусов</p>
+      </div>
+      <a href="#order" class="btn btn--full" data-close>Оформить заказ</a>
+    </div>
+  </aside>
+
+  <!-- Авторизация -->
+  <div class="modal" id="authModal" role="dialog" aria-labelledby="authTitle">
+    <div class="modal__box">
+      <div class="modal__head">
+        <h2 id="authTitle">Аккаунт Sun Coffee</h2>
+        <button type="button" class="icon-btn" data-close>✕</button>
+      </div>
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab active" data-tab="login">Вход</button>
+        <button type="button" class="modal-tab" data-tab="register">Регистрация</button>
+      </div>
+      <div id="loginPanel">
+        <form id="loginForm" class="stack-form">
+          <label><span>Телефон</span><input type="tel" name="phone" required placeholder="+7 (707) 777-32-78"></label>
+          <label><span>Пароль</span><input type="password" name="password" required></label>
+          <button type="submit" class="btn btn--full">Войти</button>
+        </form>
+      </div>
+      <div id="registerPanel" hidden>
+        <form id="registerForm" class="stack-form">
+          <label><span>Имя</span><input type="text" name="name" required></label>
+          <label><span>Телефон</span><input type="tel" name="phone" required></label>
+          <label><span>Адрес (необязательно)</span><input type="text" name="address"></label>
+          <label><span>Пароль</span><input type="password" name="password" required minlength="4"></label>
+          <label><span>Повтор пароля</span><input type="password" name="password2" required></label>
+          <button type="submit" class="btn btn--full">Зарегистрироваться · +100 бонусов</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Личный кабинет -->
+  <div class="modal" id="accountModal" role="dialog">
+    <div class="modal__box modal__box--wide">
+      <div class="modal__head">
+        <h2>Личный кабинет</h2>
+        <button type="button" class="icon-btn" data-close>✕</button>
+      </div>
+      <div id="accountContent"></div>
+      <form id="palomaLinkForm" hidden></form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/paloma.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
